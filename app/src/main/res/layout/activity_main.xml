@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.example.sampletimer.MyProgress
+        android:padding="20dp"
+        android:id="@+id/timer1"
+        app:strokeWidth="10dp"
+        app:progress="30"
+        app:secondaryProgress="50"
+        app:backgroundColor="@android:color/black"
+        app:progressColor="@android:color/holo_blue_bright"
+        app:secondaryProgressColor="@android:color/holo_blue_dark"
+        app:primaryCapSize="30"
+        app:secodaryCapSize="40"
+        app:primaryCapVisibility="true"
+        app:secodaryCapVisibility="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
+    <com.maxwellforest.blogtimer.TimerView
+        android:id="@+id/timer"
+        android:layout_width="500dp"
+        android:layout_height="400dp"
+        app:circleColor="#A53C6F" />
+
+    <Button
+        android:id="@+id/btn_timer_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="timer_start"/>
+
+</LinearLayout>
