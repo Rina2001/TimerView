@@ -28,7 +28,7 @@ public class TimerView extends View {
 
     private static final int ARC_START_ANGLE = 270; // 12 o'clock
 
-    private static final float THICKNESS_SCALE = 0.03f;
+    private static final float THICKNESS_SCALE = 0.08f;
 
     private Bitmap mBitmap;
     private Canvas mCanvas;
@@ -60,31 +60,32 @@ public class TimerView extends View {
         super(context, attrs, defStyleAttr);
 
         int circleColor = Color.RED;
-
+        float fontSize = 15f;
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TimerView);
             if (ta != null) {
                 circleColor = ta.getColor(R.styleable.TimerView_circleColor, circleColor);
+                fontSize = ta.getDimension(R.styleable.TimerView_fontSize,fontSize);
                 ta.recycle();
             }
         }
 
         mCirclePaint = new Paint();
         mCirclePaint.setAntiAlias(true);
-        mCirclePaint.setStrokeWidth(30);
+        mCirclePaint.setStrokeWidth(20);
         mCirclePaint.setStyle(Paint.Style.STROKE);
-        mCirclePaint.setColor(circleColor);
+        mCirclePaint.setColor(Color.GRAY);
 
         textPainter = new Paint();
         textPainter.setAntiAlias(true);
-        textPainter.setTextSize(60);
+        textPainter.setTextSize(fontSize);
         textPainter.setColor(circleColor);
 
         fullBgPaint = new Paint();
         fullBgPaint.setAntiAlias(true);
         fullBgPaint.setStyle(Paint.Style.STROKE);
-        fullBgPaint.setStrokeWidth(30);
-        fullBgPaint.setColor(Color.GRAY);
+        fullBgPaint.setStrokeWidth(20);
+        fullBgPaint.setColor(circleColor);
     }
 
     @SuppressWarnings("SuspiciousNameCombination")
@@ -112,7 +113,14 @@ public class TimerView extends View {
         canvas.drawArc(mCircleInnerBounds, ARC_START_ANGLE, 360, false, fullBgPaint);
 
         mCanvas.drawArc(mCircleInnerBounds, ARC_START_ANGLE, mCircleSweepAngle, false, mCirclePaint);
-        mCanvas.drawText(""+second, mCircleInnerBounds.centerY(), mCircleInnerBounds.centerX(), textPainter);
+        Log.d("TAG", canvas.getWidth()+" XY "+canvas.getHeight());
+        if((""+second).length()==1){
+            mCanvas.drawText(""+second,50,70, textPainter);
+        }
+        else{
+            mCanvas.drawText(""+second,40,70, textPainter);
+        }
+
         canvas.drawBitmap(mBitmap, 0, 0, null);
 
     }
@@ -148,7 +156,7 @@ public class TimerView extends View {
     }
 
     private void drawProgress(float progress) {
-        mCircleSweepAngle = 360 * (-progress);
+        mCircleSweepAngle = 360 * ( progress);
 
         invalidate();
     }

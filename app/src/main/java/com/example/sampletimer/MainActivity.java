@@ -11,7 +11,7 @@ import com.maxwellforest.blogtimer.TimerView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final int TIMER_LENGTH = 60;
+    private static final int TIMER_LENGTH = 15;
 
     private com.maxwellforest.blogtimer.TimerView mTimerView;
 
