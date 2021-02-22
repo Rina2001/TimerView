@@ -37,7 +37,7 @@ public class TimerView extends View {
     private RectF mCircleInnerBounds;
 
     private Paint mCirclePaint;
-    private Paint textPainter;
+    private Paint textPainter,subTextPainter;
 
     private Paint fullBgPaint;
 
@@ -72,7 +72,7 @@ public class TimerView extends View {
 
         mCirclePaint = new Paint();
         mCirclePaint.setAntiAlias(true);
-        mCirclePaint.setStrokeWidth(20);
+        mCirclePaint.setStrokeWidth(8);
         mCirclePaint.setStyle(Paint.Style.STROKE);
         mCirclePaint.setColor(Color.GRAY);
 
@@ -81,10 +81,15 @@ public class TimerView extends View {
         textPainter.setTextSize(fontSize);
         textPainter.setColor(circleColor);
 
+        subTextPainter = new Paint();
+        subTextPainter.setAntiAlias(true);
+        subTextPainter.setTextSize(fontSize-1);
+        subTextPainter.setColor(circleColor);
+
         fullBgPaint = new Paint();
         fullBgPaint.setAntiAlias(true);
         fullBgPaint.setStyle(Paint.Style.STROKE);
-        fullBgPaint.setStrokeWidth(20);
+        fullBgPaint.setStrokeWidth(8);
         fullBgPaint.setColor(circleColor);
     }
 
@@ -115,11 +120,15 @@ public class TimerView extends View {
         mCanvas.drawArc(mCircleInnerBounds, ARC_START_ANGLE, mCircleSweepAngle, false, mCirclePaint);
         Log.d("TAG", canvas.getWidth()+" XY "+canvas.getHeight());
         if((""+second).length()==1){
-            mCanvas.drawText(""+second,50,70, textPainter);
+            mCanvas.drawText(""+second,50,60, textPainter);
+            mCanvas.drawText("វិនាទី",35,90,subTextPainter);
         }
         else{
-            mCanvas.drawText(""+second,40,70, textPainter);
+            mCanvas.drawText(""+second,40,60, textPainter);
+            mCanvas.drawText("វិនាទី",34,90,subTextPainter);
         }
+
+
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
 
