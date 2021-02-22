@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Countdown timer view.
  *
- * @author Mike Gouline
  */
 public class TimerView extends View {
 
